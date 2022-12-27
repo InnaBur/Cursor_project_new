@@ -1,14 +1,9 @@
 package com.cursor.project.shop.service;
 
-import com.cursor.project.shop.UserIsBlocked;
-import com.cursor.project.shop.UserNameOrPasswIsWrong;
-import com.cursor.project.shop.model.Admin;
-import com.cursor.project.shop.model.Book;
-import com.cursor.project.shop.model.Toy;
+import com.cursor.project.shop.exceptions.UserIsBlocked;
+import com.cursor.project.shop.exceptions.UserNameOrPasswIsWrong;
 import com.cursor.project.shop.model.User;
-import com.cursor.project.shop.view.MainMenu;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;

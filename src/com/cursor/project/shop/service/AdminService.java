@@ -1,7 +1,7 @@
 package com.cursor.project.shop.service;
 
-import com.cursor.project.shop.UserIsBlocked;
-import com.cursor.project.shop.UserNameOrPasswIsWrong;
+import com.cursor.project.shop.exceptions.UserIsBlocked;
+import com.cursor.project.shop.exceptions.UserNameOrPasswIsWrong;
 import com.cursor.project.shop.model.Admin;
 import com.cursor.project.shop.model.Product;
 import com.cursor.project.shop.model.Toy;
@@ -10,7 +10,6 @@ import com.cursor.project.shop.model.User;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class AdminService {
     Toy toy = new Toy();

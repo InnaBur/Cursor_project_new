@@ -25,7 +25,7 @@ public class Admin extends People {
                 "\n If you want to block user - press 2 " +
                 "\n If you want to unblock user - press 3" +
                 "\n If you want to confirm order - press 4" +
-                "\n If you want to return into past menu - press 9!");
+                "\n If you want to return into past menu - press 6!");
     }
 
     @Override

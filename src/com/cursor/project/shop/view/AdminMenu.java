@@ -16,6 +16,7 @@ public class AdminMenu {
 AdminService adminService = new AdminService();
     Toy toy;
     Admin admin = new Admin();
+  //  MainMenu mainMenu;
     public void addAdminMenu(User user, Map<String, String> toysData, Map<String, String> usersDataNick, ArrayList<User> blockUsers) throws IOException {
         int num;
         Scanner scanner = new Scanner(System.in);
@@ -32,15 +33,16 @@ AdminService adminService = new AdminService();
                     System.out.println("Toys data: " + toysData.toString());
                     break;
                 case 2:
+                    System.out.println(usersDataNick.toString());
                     adminService.blockUser(usersDataNick, blockUsers);
                     break;
                 case 3:
                 case 4:
-                case 9:
-                    new MainMenu().showSecondStartMenu();
-                    new MainMenu().makeChoice();
-                    break;
                 case 6:
+                    new MainMenu().showSecondStartMenu();
+                   //new MainMenu().makeChoice();
+                    break;
+
             }
             admin.showMenu(admin);
         }

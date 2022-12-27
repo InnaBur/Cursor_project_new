@@ -1,7 +1,7 @@
 package com.cursor.project.shop.view;
 
-import com.cursor.project.shop.UserIsBlocked;
-import com.cursor.project.shop.UserNameOrPasswIsWrong;
+import com.cursor.project.shop.exceptions.UserIsBlocked;
+import com.cursor.project.shop.exceptions.UserNameOrPasswIsWrong;
 import com.cursor.project.shop.model.Admin;
 import com.cursor.project.shop.model.Book;
 import com.cursor.project.shop.model.Toy;
@@ -20,7 +20,11 @@ public class MainMenu {
     Admin admin = new Admin();
     Toy toy ;
     Book book = new Book();
-    User user;
+    UserService userService = new UserService();
+    UserMenu userMenu =new UserMenu();
+    AdminService adminService = new AdminService();
+    AdminMenu adminMenu = new AdminMenu();
+    User user = new User();
 
 
     //map for users data
@@ -32,6 +36,7 @@ public class MainMenu {
     Map<String, Integer> productsData = new HashMap<>();
     Map<String, String> toysData = new HashMap<>();
     Map<String, String> booksData = new HashMap<>();
+    Map<String, String> order = new HashMap<>();
 ArrayList<User> blockUsers = new ArrayList<>();
     public void makeChoice() throws IOException {
         // reading data about products from the txt files
@@ -39,7 +44,7 @@ ArrayList<User> blockUsers = new ArrayList<>();
         showStartMenu();
         Scanner scanner = new Scanner(System.in);
         int num;
-        User user = null;
+       // user = null;
 
         while (scanner.hasNextInt()) {
 
@@ -47,12 +52,11 @@ ArrayList<User> blockUsers = new ArrayList<>();
 
             switch (num) {
                 case 1:
-                    user = new User();
                     user.addUser();
 
                     if (!usersDataNick.containsKey(user.getNickname())) {
-                        new UserService().addUserIntoCollection(user, usersData, usersDataNick, userBool);
-                        for (Map.Entry entry : usersData.entrySet())
+                        userService.addUserIntoCollection(user, usersData, usersDataNick, userBool);
+                        for (Map.Entry entry : usersDataNick.entrySet())
                         {
                             System.out.println("key: " + entry.getKey().toString() + "; value: " + entry.getValue().toString());
                         }
@@ -66,9 +70,9 @@ ArrayList<User> blockUsers = new ArrayList<>();
 
                 case 2:
                     try {
-                       new UserService().login(usersDataNick, user, usersData, userBool);
+                       userService.login(usersDataNick, user, usersData, userBool);
                         System.out.println("User menu!");
-                        new UserMenu().addUserMenu(user, toy, toysData, usersDataNick, usersData, userBool);
+                        userMenu.addUserMenu(user, toy, toysData, usersDataNick, usersData, userBool, order);
 
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
@@ -80,8 +84,8 @@ ArrayList<User> blockUsers = new ArrayList<>();
                     }
                 case 3:
                     try {
-                        new AdminService().login();
-                        new AdminMenu().addAdminMenu(user, toysData, usersDataNick, blockUsers);
+                        adminService.login();
+                        adminMenu.addAdminMenu(user, toysData, usersDataNick, blockUsers);
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
                         System.out.println("" + e.getMessage());
