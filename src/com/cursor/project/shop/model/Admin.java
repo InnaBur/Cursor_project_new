@@ -20,18 +20,14 @@ public class Admin extends People {
 
 
     @Override
-    public void showMenu(Admin admin) {
-        System.out.println(admin.getNickname() + " Make your choice! If you want to add product to the list - press 1 " +
+    public void showMenu() {
+        System.out.println(this.getNickname() + " Make your choice! \n If you want to add product to the list - press 1 " +
                 "\n If you want to block user - press 2 " +
                 "\n If you want to unblock user - press 3" +
                 "\n If you want to confirm order - press 4" +
-                "\n If you want to return into past menu - press 6!");
+                "\n If you want to return into past menu - press 'a'!");
     }
 
-    @Override
-    public void showMenu(User user) {
-
-    }
 
 
 }

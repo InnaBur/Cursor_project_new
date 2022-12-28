@@ -18,10 +18,10 @@ import java.util.*;
 
 public class MainMenu {
     Admin admin = new Admin();
-    Toy toy ;
+    Toy toy;
     Book book = new Book();
     UserService userService = new UserService();
-    UserMenu userMenu =new UserMenu();
+    UserMenu userMenu = new UserMenu();
     AdminService adminService = new AdminService();
     AdminMenu adminMenu = new AdminMenu();
     User user = new User();
@@ -37,32 +37,28 @@ public class MainMenu {
     Map<String, String> toysData = new HashMap<>();
     Map<String, String> booksData = new HashMap<>();
     Map<String, String> order = new HashMap<>();
-ArrayList<User> blockUsers = new ArrayList<>();
+    Map<String, String> blockUsers = new HashMap<>();
+    Map<String, Map<String, String>> usersOrder = new HashMap<>();
+
     public void makeChoice() throws IOException {
         // reading data about products from the txt files
         readFileToysData(toysData, booksData, "file/Toys.txt");
         showStartMenu();
         Scanner scanner = new Scanner(System.in);
         int num;
-       // user = null;
+        // user = null;
 
         while (scanner.hasNextInt()) {
-
             num = scanner.nextInt();
-
             switch (num) {
                 case 1:
                     user.addUser();
-
                     if (!usersDataNick.containsKey(user.getNickname())) {
                         userService.addUserIntoCollection(user, usersData, usersDataNick, userBool);
-                        for (Map.Entry entry : usersDataNick.entrySet())
-                        {
+                        for (Map.Entry entry : usersDataNick.entrySet()) {
                             System.out.println("key: " + entry.getKey().toString() + "; value: " + entry.getValue().toString());
                         }
-
                         break;
-
                     } else {
                         System.out.println("User is already exist! Try once more!");
                         break;
@@ -70,22 +66,20 @@ ArrayList<User> blockUsers = new ArrayList<>();
 
                 case 2:
                     try {
-                       userService.login(usersDataNick, user, usersData, userBool);
-                        System.out.println("User menu!");
-                        userMenu.addUserMenu(user, toy, toysData, usersDataNick, usersData, userBool, order);
+                        userService.login(userMenu, usersDataNick, user, blockUsers, toy, toysData, order, usersOrder);
 
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
                         System.out.println("" + e.getMessage());
                         break;
-                    }
-                    catch (UserIsBlocked e) {
+                    } catch (UserIsBlocked e) {
                         System.out.println(" " + e.getMessage());
+                        break;
                     }
                 case 3:
                     try {
                         adminService.login();
-                        adminMenu.addAdminMenu(user, toysData, usersDataNick, blockUsers);
+                        adminMenu.addAdminMenu(user, toysData, usersDataNick, blockUsers, usersOrder);
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
                         System.out.println("" + e.getMessage());
@@ -103,23 +97,27 @@ ArrayList<User> blockUsers = new ArrayList<>();
             new MainMenu().showSecondStartMenu();
         }
     }
+
     public void showStartMenu() {
         System.out.println("Hi, there! Welcome to the toy store! \n Make your choice! If you want to register new user press 1 " +
                 "\n If you want to login - press 2 " +
                 "\n If you want to login as admin - press 3!" +
                 "\n If you want to exit - press 4!");
     }
+
     public void showSecondStartMenu() {
-        System.out.println("Make your choice! If you want to register new user press 1 " +
+        System.out.println("Make your choice! \n If you want to register new user press 1 " +
                 "\n If you want to login - press 2 " +
                 "\n If you want to login as admin - press 3!" +
                 "\n If you want to exit - press 4!");
     }
+
     /**
      * In the method we read file with the name and the price of product (toy)
+     *
      * @param toysData  into this collection data from the toys file is reading
      * @param booksData - into this collection data from the books file is reading
-     * @param filename - the name of the file you need
+     * @param filename  - the name of the file you need
      */
     private static void readFileToysData(Map<String, String> toysData, Map<String, String> booksData, String filename) {
         String line;

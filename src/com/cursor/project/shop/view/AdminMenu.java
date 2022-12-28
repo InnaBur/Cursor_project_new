@@ -13,38 +13,46 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class AdminMenu {
-AdminService adminService = new AdminService();
+    AdminService adminService = new AdminService();
     Toy toy;
     Admin admin = new Admin();
-  //  MainMenu mainMenu;
-    public void addAdminMenu(User user, Map<String, String> toysData, Map<String, String> usersDataNick, ArrayList<User> blockUsers) throws IOException {
-        int num;
-        Scanner scanner = new Scanner(System.in);
-        admin.showMenu(admin);
 
-        while (true) {
-            //num = ;
-            switch (scanner.nextInt()) {
+    public void addAdminMenu(User user, Map<String, String> toysData, Map<String, String> usersDataNick, Map<String, String> blockUsers, Map<String, Map<String, String>> usersOrder) throws IOException {
+        admin.showMenu();
+        Scanner scanner = new Scanner(System.in);
+        int num;
+
+        while (scanner.hasNextInt()) {
+           num = scanner.nextInt();
+            switch (num) {
                 case 1:
-                    /* reading txt file with toys database into a map
-                     * which will be supplemented with products that will be provided by the admin
-                     */
-                    adminService.addToy( toysData);
+                    adminService.addToy(toysData);
                     System.out.println("Toys data: " + toysData.toString());
                     break;
                 case 2:
                     System.out.println(usersDataNick.toString());
                     adminService.blockUser(usersDataNick, blockUsers);
+                    System.out.println("Us " + usersDataNick.toString());
                     break;
                 case 3:
+                    System.out.println("Blocked " + blockUsers.toString());
+                    adminService.unblockUser(usersDataNick, blockUsers);
                 case 4:
+                    System.out.println("Input users name: ");
+                    Scanner name = new Scanner(System.in);
+                    String n = name.nextLine();
+                        if ((usersOrder.containsKey(n))) {
+                            System.out.println(n + usersOrder);
+                        } else {
+                            System.out.println("There isn`t this user in database!");
+                        }
+
                 case 6:
-                    new MainMenu().showSecondStartMenu();
-                   //new MainMenu().makeChoice();
                     break;
 
             }
-            admin.showMenu(admin);
+
+            admin.showMenu();
         }
     }
 

@@ -24,7 +24,7 @@ public abstract class People {
     }
 
 
-    public abstract void showMenu(Admin admin);
+    public abstract void showMenu();
 
-    public abstract void showMenu(User user);
+
 }

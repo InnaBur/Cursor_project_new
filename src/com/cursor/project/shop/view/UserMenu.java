@@ -17,15 +17,16 @@ public class UserMenu {
      * In the method user can make his choise: register, login,
      * find user by id or exit
      *
-     * @param usersData     - database for finding by id
+     *
      * @param usersDataNick - database for login user
      */
     public void addUserMenu(User user, Toy toy,
                                     Map<String, String> toysData,
-                                    Map<String, String> usersDataNick, Map<UUID, User> usersData, Map<String, Boolean> userBool,  Map<String, String> order) throws IOException {
+                                    Map<String, String> usersDataNick,
+                            Map<String, String> order, Map<String, Map<String, String>> usersOrder) throws IOException {
         int num;
         Scanner scanner = new Scanner(System.in);
-        user.showMenu(user);
+        user.showMenu();
 
         while (scanner.hasNextInt()) {
 
@@ -41,7 +42,7 @@ public class UserMenu {
                     String p = prName.nextLine();
 
                     if ((toysData.containsKey(p))) {
-                        System.out.println(toysData.entrySet());
+                        System.out.println(toysData.get(p));
                     } else {
                         System.out.println("There isn`t this product in database!");
                     }
@@ -55,19 +56,21 @@ public class UserMenu {
                     if ((toysData.containsKey(pr))) {
                         System.out.println(pr + " added");
                         order.put(pr, toysData.get(pr));
-                        System.out.println("Your order " + order);
+                        usersOrder.put(usersDataNick.get(user), order);
+                        System.out.println(user.getNickname() + " Your order " + order);
+                        System.out.println("Map order " + usersOrder);
                     } else {
                         System.out.println("There isn`t this product in database!");
                     }
                     break;
                 case 4:
-                case 5:
+                    System.out.println(user.getNickname() + "Your order " + order);
+                    break;
                 case 9:
-                    new MainMenu().showSecondStartMenu();
-                    new MainMenu().makeChoice();
+
                     break;
             }
-            user.showMenu(user);
+            user.showMenu();
         }
     }
 }
