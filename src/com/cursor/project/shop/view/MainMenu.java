@@ -67,7 +67,6 @@ public class MainMenu {
                 case 2:
                     try {
                         userService.login(userMenu, usersDataNick, user, blockUsers, toy, toysData, order, usersOrder);
-
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
                         System.out.println("" + e.getMessage());
@@ -79,7 +78,7 @@ public class MainMenu {
                 case 3:
                     try {
                         adminService.login();
-                        adminMenu.addAdminMenu(user, toysData, usersDataNick, blockUsers, usersOrder);
+                        adminMenu.addAdminMenu(toysData, usersDataNick, blockUsers, usersOrder);
                         break;
                     } catch (UserNameOrPasswIsWrong e) {
                         System.out.println("" + e.getMessage());

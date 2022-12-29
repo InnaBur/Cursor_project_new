@@ -27,13 +27,10 @@ public class UserService {
         Scanner pas = new Scanner(System.in);
         String passw = pas.nextLine();
 
-
         if ((usersDataNick.containsKey(name)) && (usersDataNick.containsValue(passw))
                 && (!blockUsers.containsKey(name))) {
-            System.out.println(name + " You are logging! Congrats!");
-            System.out.println("User menu!");
+            System.out.println(name + "! You are logging! Congrats! \n User menu:");
             userMenu.addUserMenu(user, toy, toysData, usersDataNick, order, usersOrder);
-
         }
             else if (blockUsers.containsKey(name)) {
                 throw new UserIsBlocked("You are blocked!");

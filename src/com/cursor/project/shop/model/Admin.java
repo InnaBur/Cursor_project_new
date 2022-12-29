@@ -17,11 +17,15 @@ public class Admin extends People {
         return "abcd";
     }
 
+    @Override
+    public void showMenu(User user) {
+
+    }
 
 
     @Override
-    public void showMenu() {
-        System.out.println(this.getNickname() + " Make your choice! \n If you want to add product to the list - press 1 " +
+    public void showMenu(Admin admin) {
+        System.out.println(this.getNickname() + " Make your choice! \n If you want to add product to the list - press 1 (twice)" +
                 "\n If you want to block user - press 2 " +
                 "\n If you want to unblock user - press 3" +
                 "\n If you want to confirm order - press 4" +

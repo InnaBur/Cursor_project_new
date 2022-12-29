@@ -48,12 +48,17 @@ public class User extends People {
 
 
     @Override
-    public void showMenu() {
+    public void showMenu(User user) {
         System.out.println("\n Make your choice! \n If you want to see products list - press 1 " +
                 "\n If you want to find the product - press 2 " +
                 "\n If you want to add the product into your order - press 3" +
                 "\n If you want to see your order - press 4" +
                 "\n If you want to return into past menu - press 'a'!");
+
+    }
+
+    @Override
+    public void showMenu(Admin admin) {
 
     }
 

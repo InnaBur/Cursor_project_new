@@ -80,9 +80,12 @@ public class AdminService {
         System.out.println("Input users nickname to unblock user: ");
         String n = name.nextLine();
 
-        if ((usersDataNick.containsKey(n))) {
-            usersDataNick.put(n, usersDataNick.get(n));
+        if ((blockUsers.containsKey(n))) {
+            usersDataNick.put(n, blockUsers.get(n));
+
             blockUsers.remove(n);
+            System.out.println("Bl " + blockUsers);
+            System.out.println("Us " + usersDataNick);
             System.out.println(n + " is unblocked");
 
         } else {
