@@ -1,34 +1,31 @@
 package com.cursor.project.shop.view;
 
+import com.cursor.project.shop.exceptions.UserIsBlocked;
 import com.cursor.project.shop.model.*;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class UserMenu {
-    User user = new User();
-    MainMenu mainMenu;
 
     /**
      * In the method user can make his choise: register, login,
      * find user by id or exit
      *
-     * @param usersDataNick - database for login user
+     * @param user       class for user
+     * @param toysData   the map with toys name and price
+     * @param order      the map with order data
+     * @param usersOrder the map with users order data
      */
-    public void addUserMenu(User user, Toy toy,
-                            Map<String, String> toysData,
-                            Map<String, String> usersDataNick,
-                            Map<String, String> order, Map<String, Map<String, String>> usersOrder) throws IOException {
+    public void addUserMenu(User user, Map<String, String> toysData,
+                            Map<String, String> order, Map<String, Map<String, String>> usersOrder) throws UserIsBlocked {
         int num;
         Scanner scanner = new Scanner(System.in);
         user.showMenu(user);
 
         while (scanner.hasNextInt()) {
-
             num = scanner.nextInt();
-
             switch (num) {
                 case 1:
                     System.out.println("Toys list: " + toysData.toString());
@@ -37,7 +34,6 @@ public class UserMenu {
                     System.out.println("Input product name: ");
                     Scanner prName = new Scanner(System.in);
                     String p = prName.nextLine();
-
                     if ((toysData.containsKey(p))) {
                         System.out.println("Found! The price is: " + toysData.get(p));
                     } else {

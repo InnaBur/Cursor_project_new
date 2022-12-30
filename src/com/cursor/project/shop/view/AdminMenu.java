@@ -1,19 +1,29 @@
 package com.cursor.project.shop.view;
 
+import com.cursor.project.shop.exceptions.UserIsBlocked;
 import com.cursor.project.shop.model.*;
 import com.cursor.project.shop.service.AdminService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.UUID;
 
+/** The class shows the menu for admin
+ *
+ */
 public class AdminMenu {
     AdminService adminService = new AdminService();
     Admin admin = new Admin();
 
-    public void addAdminMenu(Map<String, String> toysData, Map<String, String> usersDataNick, Map<String, String> blockUsers, Map<String, Map<String, String>> usersOrder) throws IOException {
+    /** The method allows choosing what admin to do
+     *
+     * @param toysData the map with toys name and price
+     * @param usersDataNick the map with users data
+     * @param blockUsers the map with blocked users data
+     * @param usersOrder the map with users order data
+     */
+    public void addAdminMenu(Map<String, String> toysData, Map<String, String> usersDataNick,
+                             Map<String, String> blockUsers, Map<String, Map<String, String>> usersOrder) throws UserIsBlocked {
 
         int num;
         Scanner scanner = new Scanner(System.in);

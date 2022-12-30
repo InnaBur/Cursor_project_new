@@ -2,8 +2,6 @@ package com.cursor.project.shop.view;
 
 import com.cursor.project.shop.exceptions.UserIsBlocked;
 import com.cursor.project.shop.exceptions.UserNameOrPasswIsWrong;
-import com.cursor.project.shop.model.Admin;
-import com.cursor.project.shop.model.Book;
 import com.cursor.project.shop.model.Toy;
 import com.cursor.project.shop.model.User;
 import com.cursor.project.shop.service.AdminService;
@@ -16,10 +14,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/** The class shows the main menu for the shop
+ *
+ */
+
 public class MainMenu {
-    Admin admin = new Admin();
     Toy toy;
-    Book book = new Book();
     UserService userService = new UserService();
     UserMenu userMenu = new UserMenu();
     AdminService adminService = new AdminService();
@@ -132,7 +132,6 @@ public class MainMenu {
                 } else if (filename.equals("file/Books.txt")) {
                     booksData.put(name, price);
                 }
-
             }
             br.close();
         } catch (FileNotFoundException e) {

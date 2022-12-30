@@ -5,23 +5,13 @@ import java.util.UUID;
 
 public class User extends People {
 
-    private UUID id = UUID.randomUUID();
+    private final UUID id = UUID.randomUUID();
     private String nickname;
     private String password;
-
     private String name;
     private String lastName;
 
     private boolean isBlocked;
-
-    //public boolean isBlocked() {
-    //    return true;
-    //}
-
-    public boolean replaceIsBlocked() {
-        return true;
-    }
-
     @Override
     public String getName() {
         return name;
@@ -45,8 +35,6 @@ public class User extends People {
         return password;
     }
 
-
-
     @Override
     public void showMenu(User user) {
         System.out.println("\n Make your choice! \n If you want to see products list - press 1 " +
@@ -54,12 +42,10 @@ public class User extends People {
                 "\n If you want to add the product into your order - press 3" +
                 "\n If you want to see your order - press 4" +
                 "\n If you want to return into past menu - press 'a'!");
-
     }
 
     @Override
     public void showMenu(Admin admin) {
-
     }
 
     public void addUser() {
@@ -95,12 +81,6 @@ public class User extends People {
         this.name = array[2];
         this.lastName = array[3];
         this.isBlocked = false;
-
-
-    }
-
-    public boolean isBlocked() {
-        return isBlocked;
     }
 
     @Override

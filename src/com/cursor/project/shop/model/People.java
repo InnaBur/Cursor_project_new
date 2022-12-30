@@ -23,8 +23,8 @@ public abstract class People {
         return password;
     }
 
-
     public abstract void showMenu(User user);
+
     public abstract void showMenu(Admin admin);
 
 }
